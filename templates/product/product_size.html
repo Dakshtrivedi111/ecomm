@@ -1,0 +1,147 @@
+{% extends "base/base.html"%}
+
+{%  block start %}
+
+<section class="section-content padding-y bg">
+    <div class="container">
+
+        <nav class="woocommerce-breadcrumb">
+            <a href="">Home</a>
+            <span class="delimiter">
+                <i class="tm tm-breadcrumbs-arrow-right">
+                </i>
+            </span>
+            <a href="">{{product.Category}}</a>
+            <span class="delimiter">
+                <i class="tm tm-breadcrumbs-arrow-right"></i></span>{{product.Product_name}}</nav>
+    
+    <!-- ============================ COMPONENT 1 ================================= -->
+    <div class="card">
+        <div class="row no-gutters">
+            <aside class="col-md-6">
+    <article class="gallery-wrap"> 
+    <div class="img-big-wrap">
+      <div> <a href="#"><img src="/media/{{product.product_images.first.image}}"></a></div>
+    </div> <!-- slider-product.// -->
+    <div class="thumbs-wrap">
+
+      {% for image in product.product_images.all %}
+      <a href="#" class="item-thumb"> <img src="/media/{{image.image}}"></a>
+      
+      {% endfor %}
+
+    </div> <!-- slider-nav.// -->
+    </article> <!-- gallery-wrap .end// -->
+            </aside>
+            <main class="col-md-6 border-left">
+    <article class="content-body">
+    
+    <h2 class="title">{{product.Product_name}}</h2>
+    
+    <div class="rating-wrap my-3">
+        <ul class="rating-stars">
+            <li style="width:80%" class="stars-active"> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> 
+            </li>
+            <li>
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                <i class="fa fa-star"></i> 
+            </li>
+        </ul>
+        <small class="label-rating text-muted">132 reviews</small>
+        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+    </div> <!-- rating-wrap.// -->
+    
+    <div class="mb-3"> 
+        <var class="price h4">RS. 
+            {% if updated_price %}
+            {{ updated_price }}
+            { % else %}
+            {{product.price}}
+            {% endif %}
+            {{product.price}}
+            .00</var>  
+    </div> <!-- price-detail-wrap .// -->
+    
+    <p>{{product.product_desription}}</p>
+    
+    
+    <dl class="row">
+      <dt class="col-sm-3">Model#</dt>
+      <dd class="col-sm-9">Odsy-1000</dd>
+    
+      <dt class="col-sm-3">Color</dt>
+      <dd class="col-sm-9">Brown</dd>
+    
+      <dt class="col-sm-3">Delivery</dt>
+      <dd class="col-sm-9">INDIA     </dd>
+    </dl>
+    
+    <hr>
+        <div class="form-row">
+            <div class="form-group col-md flex-grow-0">
+                <label>Quantity</label>
+                <div class="input-group mb-3 input-spinner">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-light" type="button" id="button-plus"> + </button>
+                  </div>
+                  <input type="text" class="form-control" value="1">
+                  <div class="input-group-append">
+                    <button class="btn btn-light" type="button" id="button-minus"> − </button>
+                  </div>
+                </div>
+            </div> <!-- col.// -->
+            {{selected_size}}
+            {% if product.size_variant.count %}
+            <div class="form-group col-md">
+                <tr>
+                    <th class="label"><label for="pa_color">Color</label><span class="woo-selected-variation-item-name" data-default="">: Yellow</span></th>
+                    <td class="value woo-variation-items-wrapper">
+                        <select style="display:none" id="pa_color" class=" woo-variation-raw-select" name="attribute_pa_color" data-attribute_name="attribute_pa_color" data-show_option_none="yes"><option value="">Choose an option</option><option value="c-green" class="attached enabled">C Green</option><option value="lavender" class="attached enabled">Lavender</option><option value="parrot-green" class="attached enabled">Parrot Green</option><option value="yellow" class="attached enabled">Yellow</option></select><ul role="radiogroup" aria-label="Color" class="variable-items-wrapper color-variable-items-wrapper wvs-style-squared" data-attribute_name="attribute_pa_color" data-attribute_values="[&quot;c-green&quot;,&quot;lavender&quot;,&quot;parrot-green&quot;,&quot;yellow&quot;]"><li aria-checked="false" tabindex="0" data-wvstooltip="C Green" class="variable-item color-variable-item color-variable-item-c-green" title="C Green" data-title="C Green" data-value="c-green" role="radio" data-wvstooltip-out-of-stock=""><div class="variable-item-contents"><span class="variable-item-span variable-item-span-color" style="background-color:#98fbd2;"></span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="Lavender" class="variable-item color-variable-item color-variable-item-lavender" title="Lavender" data-title="Lavender" data-value="lavender" role="radio" data-wvstooltip-out-of-stock=""><div class="variable-item-contents"><span class="variable-item-span variable-item-span-color" style="background-color:#9d8dc7;"></span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="Parrot Green" class="variable-item color-variable-item color-variable-item-parrot-green" title="Parrot Green" data-title="Parrot Green" data-value="parrot-green" role="radio" data-wvstooltip-out-of-stock=""><div class="variable-item-contents"><span class="variable-item-span variable-item-span-color" style="background-color:#c8dd65;"></span></div></li><li aria-checked="true" tabindex="0" data-wvstooltip="Yellow" class="variable-item color-variable-item color-variable-item-yellow selected" title="Yellow" data-title="Yellow" data-value="yellow" role="radio" data-wvstooltip-out-of-stock=""><div class="variable-item-contents"><span class="variable-item-span variable-item-span-color" style="background-color:#ffff00;"></span></div></li></ul>						</td>
+                </tr>
+                    <label>Select size</label>
+                    <div class="mt-1">
+                      {% for size in product.size_variant.all %}
+                      
+                        <label class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" onchange = "get_correct_price('{{size.size_name}}')" value = "size"
+                          {% if selected_size == size.size_name %}
+                          checked 
+                          {% endif %}
+                          class="custom-control-input">
+                          <div class="custom-control-label">{{size.size_name}}</div>
+                        </label>
+    
+                      {% endfor %}
+    
+                    </div>
+            </div>
+            {% endif %}
+            <!-- col.// -->
+        </div> <!-- row.// -->
+    
+        <a href="#" class="btn  btn-primary"> Buy now </a>
+        <a href="#" class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+    </article> <!-- product-info-aside .// -->
+            </main> <!-- col.// -->
+        </div> <!-- row.// -->
+    </div> <!-- card.// -->
+    <!-- ============================ COMPONENT 1 END .// ================================= -->
+    
+
+    </div>
+    </section>
+
+
+    <script>
+        function get_correct_price(size){
+
+            window.location.href = window.location.pathname
+        }
+
+    </script>
+
+{% endblock %}
